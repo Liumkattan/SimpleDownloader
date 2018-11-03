@@ -1,7 +1,7 @@
 #! /usr/bin/python3
 
 """Python Fast Downloader
-	A script split files and download them smaltinuasly"""
+	A script thats split files and download them smaltinuasly"""
 
 import os, time, sys
 import requests as req
@@ -9,6 +9,7 @@ from queue import Queue
 from threading import Thread
 
 # Default Values
+tool_version 	= "0.1.1"
 byte_size 		= 1048576
 max_threads 	= 5
 max_retry 		= 5
@@ -298,6 +299,7 @@ def main():
 	parser.add_argument("-s", "--no-split", action="store_true", help="Disable default file splitting behavior")
 	parser.add_argument("-t", "--threads", help="Maximum number of threads to use (Working only if split is avilable)")
 	parser.add_argument("-v", "--no-verbos", action="store_true", help="Disable verbosity (Do not display output), default is Displaying")
+	parser.add_argument("-V", "--version", action="store_true", help="Display tool version and exit")
 
 
 	args 		= parser.parse_args()
@@ -308,8 +310,14 @@ def main():
 	threads 	= args.threads if args.threads else max_threads
 	retries 	= args.retry if args.retry else max_retry
 
+	if args.version:
+		print("SimpleDownloader:", tool_version)
+		exit()
+
 	if len(sys.argv) > 1:
-		Download(File(url=args.url, location=location, name=args.name), threads=threads, path=path, retries=retries, verbos=verbos, split=split).download()
+		Download(File(url=args.url, location=location, name=args.name),
+					threads=threads, path=path, retries=retries,
+					verbos=verbos, split=split).download()
 	else: parser.print_help(sys.stderr) 
 
 if __name__ == '__main__':
