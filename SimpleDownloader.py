@@ -13,7 +13,7 @@ tool_version 	= "0.1.1"
 byte_size 		= 1048576
 max_threads 	= 5
 max_retry 		= 5
-default_path 	= os.path.join(os.environ["HOME"], 'Videos', 'PyDownloader')
+default_path 	= os.path.join(os.environ["HOME"], 'Videos', 'SimpleDownloader')
 footer_size 	= 22 # The size of the data proves the file was downloaded by this script
 footer_indicator = "fuz_file"
 
